@@ -12,24 +12,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/scheduler")
 public class ApiSchedulerController {
-
     @Autowired
     private ApiSchedulerService apiSchedulerService;
 
-    @GetMapping("/all")
-    public List<ApiConfig> getAllApis() {
-        return apiSchedulerService.getAllApiConfigs();
-    }
-
     @PostMapping("/add")
-    public ResponseEntity<String> addApi(@RequestBody ApiConfig apiConfig) {
-        apiSchedulerService.addApi(apiConfig);
-        return ResponseEntity.ok("API Added Successfully");
+    public ApiConfig addApiConfig(@RequestBody ApiConfig apiConfig) {
+        return apiSchedulerService.addApiConfig(apiConfig);
     }
 
-    @PostMapping("/trigger/{id}")
-    public ResponseEntity<String> triggerApi(@PathVariable Long id) {
-        apiSchedulerService.triggerApi(id);
-        return ResponseEntity.ok("API Triggered Successfully");
+    @DeleteMapping("/delete/{id}")
+    public void deleteApiConfig(@PathVariable Long id) {
+        apiSchedulerService.deleteApiConfig(id);
+    }
+
+    @PostMapping("/execute/{id}")
+    public String executeApi(@PathVariable Long id) {
+        return apiSchedulerService.executeApi(id);
+    }
+
+    @GetMapping("/all")
+    public List<ApiConfig> getAllApiConfigs() {
+        return apiSchedulerService.getAllApiConfigs();
     }
 }
