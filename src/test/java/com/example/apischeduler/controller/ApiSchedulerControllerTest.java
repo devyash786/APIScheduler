@@ -32,7 +32,6 @@ class ApiSchedulerControllerTest {
         apiConfig.setId(1L);
         apiConfig.setUrl("http://example.com/api");
         apiConfig.setHttpMethod("GET");
-        // Initialize other fields as necessary
     }
 
     @Test
